@@ -27,4 +27,13 @@ public interface InventoryService {
 	 * @return true
 	 */
 	public boolean decreaseQuantity(String productName); 
+	
+	/**
+	 * This method return true if the given id product will deleted
+	 * else return false
+	 * 
+	 * @param id
+	 * @return 
+	 */
+	public boolean deleteInventoryProducts(int id); 
 }

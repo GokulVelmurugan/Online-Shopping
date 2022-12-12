@@ -34,13 +34,14 @@ public class InventoryServiceImpl implements InventoryService {
 			List<Inventory> filterInventoryProducts = new CopyOnWriteArrayList<>();
 			filterInventoryProducts.addAll(inventoryProducts);
 			for (Inventory inventory: filterInventoryProducts) {
-				if (inventory.isStatus() || inventory.getQuantity() == 0) {
+				if (inventory.isStatus() || 0 == inventory.getQuantity()) {
 					filterInventoryProducts.remove(inventory);
 				}
 			}
 			if (filterInventoryProducts.isEmpty()) {
 				System.out.println("throw exception");
 			}
+			return filterInventoryProducts;
 		} else {
 			System.out.println("throw exception");
 		}
@@ -58,4 +59,13 @@ public class InventoryServiceImpl implements InventoryService {
 		return inventoryRepository.save(inventory).equals(inventory);
 	}
 
+	@Override
+	public boolean deleteInventoryProducts(int id) {
+		Inventory inventory = inventoryRepository.findById(id).orElse(null);
+		if (null != inventory) {
+			inventory.setStatus(true);
+			return inventoryRepository.save(inventory).equals(inventory);
+		}
+		return false;
+	}
 }
