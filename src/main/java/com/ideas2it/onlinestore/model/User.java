@@ -1,6 +1,10 @@
 package com.ideas2it.onlinestore.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.List;
 
 @Entity
@@ -16,6 +20,11 @@ public class User extends BaseModel{
     private Role role;
     @OneToMany(mappedBy = "user")
     private List<Address> addresses;
+
+    /*@OneToMany
+    private List<Order> orders;
+    @OneToOne
+    private Cart cart;*/
 
     public Role getRole() {
         return role;
