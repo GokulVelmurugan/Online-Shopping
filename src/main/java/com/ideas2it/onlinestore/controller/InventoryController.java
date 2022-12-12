@@ -29,6 +29,12 @@ public class InventoryController {
 		return inventoryService.getInventoryProducts();
 	}
 	
+	/**
+	 * This method is used to delete the inventory product 
+	 * which is damaged
+	 * 
+	 * @return list of inventory products
+	 */
 	@DeleteMapping("/{id}")
 	public boolean deleteInventoryProduct(@PathVariable int id) {
 		return true;
