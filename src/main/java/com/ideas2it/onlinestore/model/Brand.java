@@ -1,7 +1,5 @@
 package com.ideas2it.onlinestore.model;
 
-import org.hibernate.annotations.SQLDelete;
-
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,18 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "brand")
-@SQLDelete(sql = "update brand set is_active = 0 where id = ?")
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
 public class Brand extends BaseModel {
 
 	@Id
@@ -38,4 +27,36 @@ public class Brand extends BaseModel {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "brand_id")
 	private List<Product> product;
+	
+	public Brand() {}
+	
+	public Brand(int id, String name, List<Product> product) {
+		this.id = id;
+		this.name = name;
+		this.product = product;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Product> getProduct() {
+		return product;
+	}
+
+	public void setProduct(List<Product> product) {
+		this.product = product;
+	}
 }
