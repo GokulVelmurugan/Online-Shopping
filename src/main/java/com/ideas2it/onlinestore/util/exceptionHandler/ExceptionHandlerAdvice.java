@@ -1,4 +1,4 @@
-package com.ideas2it.onlinestore.exceptionController;
+package com.ideas2it.onlinestore.util.exceptionHandler;
 
 import java.util.Date;
 
@@ -8,24 +8,25 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
-import com.ideas2it.onlinestore.customException.ResourceNotFoundException;
 import com.ideas2it.onlinestore.model.ErrorMessage;
+import com.ideas2it.onlinestore.util.customException.OnlineStoreException;
 
 import io.jsonwebtoken.ExpiredJwtException;
 
 @RestControllerAdvice
-public class ControllerExceptionHandler {
+public class ExceptionHandlerAdvice {
 
-	@ExceptionHandler(ResourceNotFoundException.class)
-	public ResponseEntity<ErrorMessage> resourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
+	@ExceptionHandler(OnlineStoreException.class)
+	public ResponseEntity<ErrorMessage> OnlineStoreException(OnlineStoreException ex, WebRequest request) {
 		ErrorMessage message = new ErrorMessage(
-				HttpStatus.NOT_FOUND.value(),
+				ex.httpStatus.value(),
 				new Date(),
 				ex.getMessage(),
 				request.getDescription(false));
 		
 		return new ResponseEntity<ErrorMessage>(message, HttpStatus.NOT_FOUND);
 	}
+	
 	
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ErrorMessage> globalExceptionHandler(Exception ex, WebRequest request) {
@@ -39,6 +40,17 @@ public class ControllerExceptionHandler {
 		return new ResponseEntity<ErrorMessage>(message, HttpStatus.INTERNAL_SERVER_ERROR);	
 		
 	}
+	
+//	@ExceptionHandler(ResourceNotFoundException.class)
+//	public ResponseEntity<ErrorMessage> resourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
+//		ErrorMessage message = new ErrorMessage(
+//				HttpStatus.NOT_FOUND.value(),
+//				new Date(),
+//				ex.getMessage(),
+//				request.getDescription(false));
+//		
+//		return new ResponseEntity<ErrorMessage>(message, HttpStatus.NOT_FOUND);
+//	}
 	
 //	@ExceptionHandler(BadCredentialsException.class)
 //	public ResponseEntity<ErrorMessage> badCreditialsExceptionHandler(BadCredentialsException ex, WebRequest request) {

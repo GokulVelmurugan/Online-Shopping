@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
  * @version 1.0
  * @author arunkumar			
  */
-public class OnlineStoreException extends Exception {
+public class OnlineStoreException extends RuntimeException {
 
 	public HttpStatus httpStatus;
 	
