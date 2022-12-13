@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2022 - 2024 Ideas2it, Inc.All rights are reserved.
+ * 
+ * This document is protected by copyright. No part of this document may be 
+ * reproduced in any form by any means without prior written authorization of 
+ * Ideas2it and its licensors, if any.
+ */
 package com.ideas2it.onlinestore.model;
 
 import java.time.LocalDate;
@@ -7,9 +14,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient; 
 
+/**
+ * Implements product.
+ *
+ * @author Sangeetha Ilangovan
+ * @version 1.0
+ * @since 09.12.2022
+ */
 @Entity
 @Table(name = "product")
 public class Product extends BaseModel {
@@ -39,10 +56,15 @@ public class Product extends BaseModel {
 	@Column(name = "sub_category")
 	private String subCategory;	
 	
-	@Transient
+	@OneToOne(mappedBy = "Product")
+	private OrderedProducts orderedProducts;
+	
+	@ManyToOne
+	@JoinColumn(name = "seller_id")
 	private User seller;
 	
-	@Transient
+	@ManyToOne
+	@JoinColumn(name = "inventory_id")
 	private Inventory inventory;
 	
 	@Transient
