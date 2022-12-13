@@ -4,6 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+/**
+ * The Inventory class have Inventory attributes
+ * This class contain getter and setter method for Inventory attributes
+ *
+ * @version 1.0
+ * @author arunkumar
+ */
 @Entity
 @Table(name = "inventory")
 public class Inventory extends BaseModel {
