@@ -17,7 +17,7 @@ public class Order extends BaseModel{
 	private User user;
 	
 	@OneToMany(mappedBy = "order")
-	private List<OrderedProducts> orderedPoducts;
+	private List<OrderedProducts> orderedProducts;
 	
 	public Order() {
 		super();
@@ -26,7 +26,7 @@ public class Order extends BaseModel{
 	public Order(User user, List<OrderedProducts> orderProducts) {
 		super();
 		this.user = user;
-		this.orderedPoducts = orderProducts;
+		this.orderedProducts = orderProducts;
 	}
 
 	public User getUser() {
@@ -38,11 +38,11 @@ public class Order extends BaseModel{
 	}
 
 	public List<OrderedProducts> getOrderProducts() {
-		return orderedPoducts;
+		return orderedProducts;
 	}
 
 	public void setOrderProducts(List<OrderedProducts> orderProducts) {
-		this.orderedPoducts = orderProducts;
+		this.orderedProducts = orderProducts;
 	}
 	
 }
