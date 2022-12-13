@@ -1,11 +1,12 @@
 package com.ideas2it.onlinestore.model;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import java.util.List;
 
 @Entity
 @Table(name ="User")
@@ -21,10 +22,34 @@ public class User extends BaseModel{
     @OneToMany(mappedBy = "user")
     private List<Address> addresses;
 
-    /*@OneToMany
+    @OneToMany
     private List<Order> orders;
     @OneToOne
-    private Cart cart;*/
+    private Cart cart;
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
 
     public Role getRole() {
         return role;
