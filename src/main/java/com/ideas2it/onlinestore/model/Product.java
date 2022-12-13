@@ -56,7 +56,7 @@ public class Product extends BaseModel {
 	@Column(name = "sub_category")
 	private String subCategory;	
 	
-	@OneToOne(mappedBy = "Product")
+	@OneToOne(mappedBy = "product")
 	private OrderedProducts orderedProducts;
 	
 	@ManyToOne
@@ -72,8 +72,10 @@ public class Product extends BaseModel {
 	
 	public Product() {}
 
-	public Product(int id, int size, LocalDate expiryDate, String category, String color, String description,
-			String name, String subCategory, User seller, Inventory inventory, Brand brand) {
+	public Product(int id, int size, LocalDate expiryDate, String category, 
+			String color, String description, String name, String subCategory, 
+			User seller, Inventory inventory, Brand brand, 
+			OrderedProducts orderedProducts) {
 		this.id = id;
 		this.size = size;
 		this.expiryDate = expiryDate;
@@ -85,6 +87,7 @@ public class Product extends BaseModel {
 		this.seller = seller;
 		this.inventory = inventory;
 		this.brand = brand;
+		this.orderedProducts = orderedProducts;
 	}
 
 	public int getId() {
@@ -173,5 +176,13 @@ public class Product extends BaseModel {
 
 	public void setBrand(Brand brand) {
 		this.brand = brand;
+	}
+	
+	public OrderedProducts getOrderedProducts() {
+		return orderedProducts;
+	}
+	
+	public void setOrderedProducts(OrderedProducts orderedProducts) {
+		this.orderedProducts = orderedProducts;
 	}
 }
