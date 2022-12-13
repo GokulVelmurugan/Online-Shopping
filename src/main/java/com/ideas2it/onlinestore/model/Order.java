@@ -1,6 +1,7 @@
 package com.ideas2it.onlinestore.model;
 
 import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
