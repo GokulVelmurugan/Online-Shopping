@@ -21,7 +21,7 @@ public class Cart extends BaseModel {
 	private List<CartProducts> cartProducts;
 	
 	@OneToOne
-	@JoinColumn(name = "user_id", nullable = false)
+	@JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
 	private User user;
 
 	public Cart() {

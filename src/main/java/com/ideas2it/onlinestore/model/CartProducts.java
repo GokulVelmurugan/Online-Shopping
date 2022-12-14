@@ -14,6 +14,9 @@ public class CartProducts extends BaseModel{
 	@Column(name = "quantity", columnDefinition = "int not null")
 	private int quantity;
 	
+	@Column(name = "price", columnDefinition = "int not null")
+	private double price;
+	
 	@ManyToOne
 	@JoinColumn(name = "cart_id", nullable = false)
 	private Cart cart;
@@ -26,9 +29,10 @@ public class CartProducts extends BaseModel{
 		super();
 	}
 
-	public CartProducts(int quantity, Cart cart, Product product) {
+	public CartProducts(int quantity, double price, Cart cart, Product product) {
 		super();
 		this.quantity = quantity;
+		this.price = price;
 		this.cart = cart;
 		this.product = product;
 	}
@@ -39,6 +43,14 @@ public class CartProducts extends BaseModel{
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 	public Cart getCart() {
@@ -56,5 +68,6 @@ public class CartProducts extends BaseModel{
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+
 	
 }

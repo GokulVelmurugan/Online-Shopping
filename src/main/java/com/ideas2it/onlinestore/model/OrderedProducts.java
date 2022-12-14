@@ -19,18 +19,18 @@ public class OrderedProducts extends BaseModel {
 	private Product product;
 	
 	@ManyToOne
-	@JoinColumn(name = "order_id", nullable = false)
-	private Order order;
+	@JoinColumn(name = "order_list_id", nullable = false)
+	private OrderList orderList;
 
 	public OrderedProducts() {
 		super();
 	}
 
-	public OrderedProducts(int quantity, Product product, Order order) {
+	public OrderedProducts(int quantity, Product product, OrderList order) {
 		super();
 		this.quantity = quantity;
 		this.product = product;
-		this.order = order;
+		this.orderList = order;
 	}
 
 	public int getQuantity() {
@@ -49,12 +49,12 @@ public class OrderedProducts extends BaseModel {
 		this.product = product;
 	}
 
-	public Order getOrder() {
-		return order;
+	public OrderList getOrder() {
+		return orderList;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setOrder(OrderList order) {
+		this.orderList = order;
 	}	
 	
 }
