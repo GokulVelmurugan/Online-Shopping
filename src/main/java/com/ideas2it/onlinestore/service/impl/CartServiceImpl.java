@@ -1,12 +1,13 @@
 package com.ideas2it.onlinestore.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import com.ideas2it.onlinestore.customException.ResourceNotFoundException;
 import com.ideas2it.onlinestore.model.Cart;
 import com.ideas2it.onlinestore.repository.CartRepository;
 import com.ideas2it.onlinestore.service.CartService;
+import com.ideas2it.onlinestore.util.customException.OnlineStoreException;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -22,7 +23,7 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public Cart getCartById(int cartId) {
 		return this.cartRepository.findById(cartId)
-				.orElseThrow(()-> new ResourceNotFoundException("Cart not found. ID: " +cartId));
+				.orElseThrow(()-> new OnlineStoreException("Cart not found. ID: " +cartId, HttpStatus.NOT_FOUND));
 	}
 
 	@Override

@@ -11,21 +11,27 @@ import javax.persistence.Table;
 @Entity
 @Table(name ="User")
 public class User extends BaseModel{
+	
     private String firstName;
     private String lastName;
     private String email;
     private long mobileNumber;
     private long alternateMobileNumber;
+    
     @ManyToOne
     @JoinColumn(name="role_id")
     private Role role;
+    
     @OneToMany(mappedBy = "user")
     private List<Address> addresses;
 
-    @OneToMany
-    private List<Order> orders;
-    @OneToOne
+    @OneToMany(mappedBy = "user")
+    private List<OrderList> orders;
+    
+    @OneToOne(mappedBy = "user")
     private Cart cart;
+    
+    
 
     public List<Address> getAddresses() {
         return addresses;
@@ -35,11 +41,11 @@ public class User extends BaseModel{
         this.addresses = addresses;
     }
 
-    public List<Order> getOrders() {
+    public List<OrderList> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
+    public void setOrders(List<OrderList> orders) {
         this.orders = orders;
     }
 

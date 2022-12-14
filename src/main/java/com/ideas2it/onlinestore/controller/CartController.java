@@ -15,7 +15,6 @@ import com.ideas2it.onlinestore.model.Cart;
 import com.ideas2it.onlinestore.service.CartService;
 
 @RestController
-//@RequestMapping("/cart")
 public class CartController {
 
 	@Autowired

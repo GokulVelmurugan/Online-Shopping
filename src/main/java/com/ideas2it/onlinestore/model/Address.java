@@ -3,6 +3,7 @@ package com.ideas2it.onlinestore.model;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +15,9 @@ public class Address extends BaseModel{
     private int pinCode;
     private String state;
     private String type;
+    
+    @OneToOne(mappedBy = "address")
+    private OrderList order;
 
     @ManyToOne
     @JoinColumn(name="user_id")
